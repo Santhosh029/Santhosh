@@ -1,0 +1,51 @@
+package Job;
+
+import java.util.Scanner;
+
+public class Job {
+	public static void main(String[] args) {
+
+		// To take user input
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter number of jobs");
+		int n = scan.nextInt();
+		int noOfJob = 0;
+
+		// To satisfy the first constraint(i.e.,number of job should be less than 10)
+		if (n >= 0 && n <= 10) {
+			noOfJob = n;
+		}
+		System.out.println("Enter job start_time,end_time and earnings");
+
+		// To take user input of 3 pieces of information for each job
+		int[][] arr = new int[noOfJob][3];
+		for (int i = 0; i < noOfJob; i++) {
+			for (int j = 0; j < 3; j++) {
+				arr[i][j] = scan.nextInt();
+			}
+		}
+		int max = arr[0][2], sum = 0;
+
+		// To check if 2 jobs have same earnings and print the output
+		if (arr[1][2] == max) {
+			System.out.println("The number of tasks and earnings available for others");
+			System.out.println("Task: 1");
+			System.out.println("Earnings: " + max);
+		}
+
+		// If earnings are not same then print this block
+		else {
+			for (int k = 0; k < noOfJob; k++) {
+				sum = sum + arr[k][2];
+
+				// To find maximum salary from all the jobs given
+				if (arr[k][2] > max) {
+					max = arr[k][2];
+				}
+			}
+			System.out.println("The number of tasks and earnings available for others");
+			System.out.println("Task: " + (noOfJob - 1));
+			System.out.println("Earnings: " + (sum - max));
+		}
+	}
+}
